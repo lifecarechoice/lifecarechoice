@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useLanguage } from "@/lib/language-context";
 import QuoteForm from "@/components/QuoteForm";
 import CompaniesSection from "@/components/CompaniesSection";
@@ -28,20 +29,25 @@ export default function Home() {
   return (
     <div className="pt-24">
       {/* Hero Section */}
-      <section className="relative py-16 sm:py-24 md:py-32 lg:py-40 overflow-hidden" style={{
-        backgroundImage: "url('/Individuals_home_hero.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundAttachment: "fixed"
-      }}>
+      <section className="relative w-full min-h-[70vh] sm:min-h-[80vh] overflow-hidden">
+        {/* Background Image */}
+        <Image
+          src="/Individuals_home_hero.jpg"
+          alt="Life Care Choice - Family protection and life insurance"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+        
         {/* Color Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-charcoal/75 via-charcoal/65 to-charcoal/75"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-charcoal/75 via-charcoal/65 to-charcoal/75 z-[1]"></div>
         
         {/* Dark Floating Circles */}
-        <div className="absolute top-10 left-10 w-64 h-64 sm:w-80 sm:h-80 bg-charcoal/15 rounded-full blur-3xl animate-float"></div>
-        <div className="absolute bottom-10 right-10 w-80 h-80 sm:w-96 sm:h-96 bg-charcoal/20 rounded-full blur-3xl animate-float" style={{animationDelay: '2s'}}></div>
+        <div className="absolute top-10 left-10 w-64 h-64 sm:w-80 sm:h-80 bg-charcoal/15 rounded-full blur-3xl animate-float z-[2]"></div>
+        <div className="absolute bottom-10 right-10 w-80 h-80 sm:w-96 sm:h-96 bg-charcoal/20 rounded-full blur-3xl animate-float z-[2]" style={{animationDelay: '2s'}}></div>
         
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 md:py-32 lg:py-40">
           <div className="max-w-5xl mx-auto text-center">
             <div className="inline-block mb-4 sm:mb-6 animate-fade-in">
               <span className="feature-badge text-xs sm:text-sm bg-white/10 backdrop-blur-sm border-white/30 text-white">
