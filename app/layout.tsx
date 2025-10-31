@@ -46,6 +46,20 @@ export const metadata: Metadata = {
     description: "Talk to a licensed professional. Clear options. Straight answers.",
     images: ["https://lifecarechoice.com/lcc-logo-meta.png"],
   },
+  icons: {
+    icon: [
+      {
+        url: "/favicon.png",
+        type: "image/png",
+      },
+    ],
+    apple: [
+      {
+        url: "/favicon.png",
+        type: "image/png",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({

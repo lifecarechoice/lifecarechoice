@@ -28,12 +28,7 @@ export default function Home() {
   return (
     <div className="pt-24">
       {/* Hero Section */}
-      <section className="relative py-16 sm:py-24 md:py-32 lg:py-40 overflow-hidden" style={{
-        backgroundImage: "url('/Individuals_home_hero.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundAttachment: "fixed"
-      }}>
+      <section className="relative py-16 sm:py-24 md:py-32 lg:py-40 overflow-hidden bg-[url('/Individuals_home_hero.jpg')] bg-cover bg-center min-h-[70vh] bg-scroll md:bg-fixed">
         {/* Color Overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-charcoal/75 via-charcoal/65 to-charcoal/75"></div>
         
