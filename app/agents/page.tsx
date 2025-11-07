@@ -9,7 +9,8 @@ export default function Agents() {
   const { t } = useLanguage();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
-    name: "",
+    firstName: "",
+    lastName: "",
     phone: "",
     email: "",
     state: "",
@@ -89,23 +90,53 @@ export default function Agents() {
 
     setIsSubmitting(true);
 
-    console.log("Agent application submitted:", formData);
+    try {
+      const response = await fetch(
+        "https://services.leadconnectorhq.com/hooks/7iazrzjrKiMhJ2qTt5D4/webhook-trigger/10c7dc02-e766-40ed-ac4e-b03c95cdf133",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            firstName: formData.firstName,
+            lastName: formData.lastName,
+            fullName: `${formData.firstName} ${formData.lastName}`.trim(),
+            phone: formData.phone,
+            email: formData.email,
+            state: formData.state,
+            licensed: formData.licensed,
+            experience: formData.experience,
+            source: "Website - Apply to Work with LCC",
+          }),
+        }
+      );
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(errorText || "Webhook request failed");
+      }
 
-    alert("Thank you! We'll review your application and be in touch soon.");
-    setIsSubmitting(false);
-    setFormData({
-      name: "",
-      phone: "",
-      email: "",
-      state: "",
-      licensed: "",
-      experience: "",
-    });
-    setErrors({ email: "", phone: "" });
-    setTouched({ email: false, phone: false });
+      alert("Thank you! We'll review your application and be in touch soon.");
+      setFormData({
+        firstName: "",
+        lastName: "",
+        phone: "",
+        email: "",
+        state: "",
+        licensed: "",
+        experience: "",
+      });
+      setErrors({ email: "", phone: "" });
+      setTouched({ email: false, phone: false });
+    } catch (error) {
+      console.error("Failed to submit agent application", error);
+      alert(
+        "Something went wrong while sending your information. Please try again or call us directly."
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const isFieldValid = (field: "email" | "phone") => {
@@ -232,19 +263,37 @@ export default function Agents() {
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <label htmlFor="name" className="label">
-                  {(t as any).agentsPage.fullName} *
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="input-field"
-                />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label htmlFor="firstName" className="label">
+                    {t.form.firstName} *
+                  </label>
+                  <input
+                    type="text"
+                    id="firstName"
+                    name="firstName"
+                    value={formData.firstName}
+                    onChange={handleChange}
+                    required
+                    placeholder="John"
+                    className="input-field"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="lastName" className="label">
+                    {t.form.lastName} *
+                  </label>
+                  <input
+                    type="text"
+                    id="lastName"
+                    name="lastName"
+                    value={formData.lastName}
+                    onChange={handleChange}
+                    required
+                    placeholder="Doe"
+                    className="input-field"
+                  />
+                </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

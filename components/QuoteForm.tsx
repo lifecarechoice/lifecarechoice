@@ -97,36 +97,57 @@ export default function QuoteForm({ showTitle = true }: QuoteFormProps) {
 
     setIsSubmitting(true);
 
-    // Track TCPA consent
-    const consentData = {
-      ...formData,
-      timestamp: new Date().toISOString(),
-      ipAddress: "tracked-server-side",
-      consent: true,
-    };
+    try {
+      const response = await fetch(
+        "https://services.leadconnectorhq.com/hooks/7iazrzjrKiMhJ2qTt5D4/webhook-trigger/1e733ea3-68ee-4d2f-9d5e-c1eeee992267",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            firstName: formData.firstName,
+            lastName: formData.lastName,
+            fullName: `${formData.firstName} ${formData.lastName}`.trim(),
+            phone: formData.phone,
+            email: formData.email,
+            zip: formData.zip,
+            state: formData.state,
+            productInterest: formData.productInterest,
+            bestTime: formData.bestTime,
+            source: "Website - Get a Quote",
+            timestamp: new Date().toISOString(),
+          }),
+        }
+      );
 
-    console.log("Form submitted:", consentData);
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(errorText || "Webhook request failed");
+      }
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+      setShowSuccessModal(true);
 
-    // Show success modal instead of alert
-    setShowSuccessModal(true);
-    setIsSubmitting(false);
-    
-    // Reset form
-    setFormData({
-      firstName: "",
-      lastName: "",
-      phone: "",
-      email: "",
-      zip: "",
-      state: "",
-      productInterest: "",
-      bestTime: "",
-    });
-    setErrors({ email: "", phone: "" });
-    setTouched({ email: false, phone: false });
+      setFormData({
+        firstName: "",
+        lastName: "",
+        phone: "",
+        email: "",
+        zip: "",
+        state: "",
+        productInterest: "",
+        bestTime: "",
+      });
+      setErrors({ email: "", phone: "" });
+      setTouched({ email: false, phone: false });
+    } catch (error) {
+      console.error("Failed to submit quote form", error);
+      alert(
+        "Something went wrong while sending your information. Please try again or call us directly."
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const isFieldValid = (field: "email" | "phone") => {
