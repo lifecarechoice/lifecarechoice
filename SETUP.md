@@ -22,8 +22,8 @@ Navigate to [http://localhost:3000](http://localhost:3000)
 Replace these placeholders throughout the codebase:
 
 - **Phone Number**: 
-  - Display: `(800) 123-4567`
-  - Tel link: `tel:+18001234567`
+  - Display: `954-833-0290`
+  - Tel link: `tel:+19548330290`
   
 - **Email Addresses**:
   - `support@lifecarechoice.com`

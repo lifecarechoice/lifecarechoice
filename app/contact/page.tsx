@@ -8,7 +8,8 @@ export default function Contact() {
   const { t } = useLanguage();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
-    name: "",
+    firstName: "",
+    lastName: "",
     email: "",
     phone: "",
     message: "",
@@ -84,23 +85,60 @@ export default function Contact() {
       return;
     }
 
+    const firstName = formData.firstName.trim();
+    const lastName = formData.lastName.trim();
+
+    if (!firstName || !lastName) {
+      // HTML required should catch this, but double-check before submit.
+      return;
+    }
+
     setIsSubmitting(true);
 
-    console.log("Contact form submitted:", formData);
+    try {
+      const response = await fetch(
+        "https://services.leadconnectorhq.com/hooks/7iazrzjrKiMhJ2qTt5D4/webhook-trigger/c4119f3f-fa33-420c-80c9-b54e9ae78531",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            firstName,
+            lastName,
+            fullName: `${firstName} ${lastName}`.trim(),
+            email: formData.email,
+            phone: formData.phone,
+            message: formData.message,
+            source: "Website - Contact Us",
+            timestamp: new Date().toISOString(),
+            consentMarketing: true,
+            consentNonMarketing: true,
+          }),
+        }
+      );
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(errorText || "Webhook request failed");
+      }
 
-    alert("Thank you for reaching out! We'll respond shortly.");
-    setIsSubmitting(false);
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      message: "",
-    });
-    setErrors({ email: "", phone: "" });
-    setTouched({ email: false, phone: false });
+      alert("Thank you for contacting Life Care Choice. Our team will be in touch soon.");
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        message: "",
+      });
+      setErrors({ email: "", phone: "" });
+      setTouched({ email: false, phone: false });
+    } catch (error) {
+      console.error("Failed to submit contact form", error);
+      alert("Something went wrong while sending your message. Please try again or call us directly.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const isFieldValid = (field: "email" | "phone") => {
@@ -133,19 +171,37 @@ export default function Contact() {
               <h2 className="font-serif text-2xl mb-6 text-charcoal">{t.contact.formTitle}</h2>
               
               <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <label htmlFor="name" className="label">
-                    {t.contact.name} *
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    className="input-field"
-                  />
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <label htmlFor="firstName" className="label">
+                      {t.contact.firstName || (t as any).form.firstName} *
+                    </label>
+                    <input
+                      type="text"
+                      id="firstName"
+                      name="firstName"
+                      value={formData.firstName}
+                      onChange={handleChange}
+                      required
+                      placeholder="John"
+                      className="input-field"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="lastName" className="label">
+                      {t.contact.lastName || (t as any).form.lastName} *
+                    </label>
+                    <input
+                      type="text"
+                      id="lastName"
+                      name="lastName"
+                      value={formData.lastName}
+                      onChange={handleChange}
+                      required
+                      placeholder="Doe"
+                      className="input-field"
+                    />
+                  </div>
                 </div>
 
                 <div className="relative">
@@ -270,7 +326,7 @@ export default function Contact() {
                   <div>
                     <h3 className="font-semibold text-charcoal mb-1">{t.contact.phoneLabel}</h3>
                     <p className="text-charcoal/70">
-                      <a href="tel:+18001234567" className="hover:text-gold transition-colors">
+                      <a href="tel:+19548330290" className="hover:text-gold transition-colors">
                         {t.contact.phoneNumber}
                       </a>
                     </p>
@@ -339,7 +395,7 @@ export default function Contact() {
                 <p className="text-charcoal/70 mb-4">
                   {t.contact.urgentText}
                 </p>
-                <a href="tel:+18001234567" className="btn-primary inline-block">
+                <a href="tel:+19548330290" className="btn-primary inline-block">
                   {t.contact.urgentButton}
                 </a>
               </div>

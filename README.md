@@ -150,7 +150,7 @@ Footer includes:
 ### Update Contact Information
 
 Search for the following placeholders and replace with actual information:
-- Phone: `(800) 123-4567` and `tel:+18001234567`
+- Phone: `954-833-0290` and `tel:+19548330290`
 - Emails: `support@lifecarechoice.com`, `agents@lifecarechoice.com`, etc.
 - Address: `123 Insurance Way, Suite 400, Your City, ST 12345`
 
@@ -248,7 +248,7 @@ Works with any Node.js hosting:
 
 For questions or issues, contact:
 - Email: support@lifecarechoice.com
-- Phone: (800) 123-4567
+- Phone: 954-833-0290
 
 ## License
 

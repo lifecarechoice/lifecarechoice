@@ -37,7 +37,7 @@ export default function GetAQuote() {
             {(t as any).getQuotePage.callNowSubtitle}
           </p>
           <a
-            href="tel:+18001234567"
+            href="tel:+19548330290"
             className="btn-primary inline-flex items-center gap-2"
           >
             <svg

@@ -321,7 +321,7 @@ Create a similar modal for errors:
   isOpen={showErrorModal}
   onClose={() => setShowErrorModal(false)}
   title="Oops!"
-  message="Something went wrong. Please try again or call us at (800) 123-4567."
+message="Something went wrong. Please try again or call us at 954-833-0290."
 />
 ```
 

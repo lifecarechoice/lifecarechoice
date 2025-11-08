@@ -188,6 +188,7 @@ export default function QuoteForm({ showTitle = true }: QuoteFormProps) {
               value={formData.firstName}
               onChange={handleChange}
               required
+              placeholder="John"
               className="input-field"
             />
           </div>
@@ -202,6 +203,7 @@ export default function QuoteForm({ showTitle = true }: QuoteFormProps) {
               value={formData.lastName}
               onChange={handleChange}
               required
+              placeholder="Doe"
               className="input-field"
             />
           </div>
