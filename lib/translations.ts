@@ -3,13 +3,13 @@ export const translations = {
     nav: {
       home: "Home",
       products: "Products",
-      about: "About",
+      about: "About Us",
       resources: "Resources",
       team: "Team",
       carriers: "Carriers",
       getQuote: "Get a Quote",
       agents: "Agents",
-      contact: "Contact",
+      contact: "Contact Us",
     },
     hero: {
       title: "Every Choice Deserves Care.",

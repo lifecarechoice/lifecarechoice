@@ -83,7 +83,7 @@ export default function SuccessModal({
         {/* Additional Info */}
         <div className="bg-sand/20 rounded-xl p-4 mb-6 text-center">
           <p className="text-sm text-charcoal/60">
-            📧 Check your email for confirmation
+            📱 We'll follow up with a confirmation message to your phone momentarily.
           </p>
         </div>
 

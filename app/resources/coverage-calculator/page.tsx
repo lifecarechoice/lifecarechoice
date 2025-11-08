@@ -52,6 +52,7 @@ export default function CoverageCalculator() {
   const [errors, setErrors] = useState({ email: "", phone: "" });
   const [touched, setTouched] = useState({ email: false, phone: false });
   const [consent, setConsent] = useState<ConsentState>({ marketing: false, nonMarketing: false });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const totalSteps = 6;
   const locale = language === "es" ? "es-US" : "en-US";
@@ -209,7 +210,11 @@ export default function CoverageCalculator() {
     }
   };
 
-  const handleNext = () => {
+  const coverageWebhookUrl =
+    process.env.NEXT_PUBLIC_COVERAGE_CALCULATOR_WEBHOOK_URL ||
+    "https://services.leadconnectorhq.com/hooks/7iazrzjrKiMhJ2qTt5D4/webhook-trigger/e0fb4b1c-571d-4b50-b6fc-263876f3c982";
+
+  const handleNext = async () => {
     if (step === totalSteps) {
       const emailError = validateEmail(formData.email);
       const phoneError = validatePhone(formData.phone);
@@ -218,6 +223,51 @@ export default function CoverageCalculator() {
 
       if (emailError || phoneError || !consent.marketing || !consent.nonMarketing) {
         return;
+      }
+
+      if (isSubmitting) {
+        return;
+      }
+
+      setIsSubmitting(true);
+
+      try {
+        if (coverageWebhookUrl) {
+          const payload = {
+            gender: formData.gender,
+            birthDate: formData.birthDate,
+            state: formData.state,
+            tobacco: formData.tobacco,
+            coverage: formData.coverage,
+            firstName: formData.firstName,
+            lastName: formData.lastName,
+            fullName: `${formData.firstName} ${formData.lastName}`.trim(),
+            phone: formData.phone,
+            email: formData.email,
+            marketingConsent: consent.marketing,
+            nonMarketingConsent: consent.nonMarketing,
+            calculatedAge: calculateAge(formData.birthDate),
+            source: "Website - Coverage Calculator",
+            landingUrl: typeof window !== "undefined" ? window.location.href : undefined,
+            timestamp: new Date().toISOString(),
+          };
+
+          const response = await fetch(coverageWebhookUrl, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
+          });
+
+          if (!response.ok) {
+            console.error("Coverage calculator webhook failed", await response.text());
+          }
+        }
+      } catch (error) {
+        console.error("Error sending coverage calculator webhook", error);
+      } finally {
+        setIsSubmitting(false);
       }
 
       generateQuotes();
@@ -824,10 +874,14 @@ export default function CoverageCalculator() {
               </button>
               <button
                 onClick={handleNext}
-                disabled={!canProceed()}
+                disabled={!canProceed() || isSubmitting}
                 className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {step === totalSteps ? calculatorCopy.buttons.seeQuotes : calculatorCopy.buttons.continue} →
+                {step === totalSteps
+                  ? isSubmitting
+                    ? `${calculatorCopy.buttons.seeQuotes}...`
+                    : `${calculatorCopy.buttons.seeQuotes} →`
+                  : `${calculatorCopy.buttons.continue} →`}
               </button>
             </div>
           </div>
