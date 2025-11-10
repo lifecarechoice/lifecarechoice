@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev -p 3000",
     "build": "next build && next-sitemap",
+    "postbuild": "ts-node lib/pingSitemap.ts",
     "start": "next start",
     "lint": "next lint",
     "setup": "node scripts/setup.js"
@@ -30,6 +31,7 @@
   },
   "devDependencies": {
     "eslint": "^8",
-    "eslint-config-next": "14.0.4"
+    "eslint-config-next": "14.0.4",
+    "ts-node": "^10.9.2"
   }
 }
