@@ -18,7 +18,7 @@ export default function TermsOfUse() {
 
             <h2 className="font-serif text-2xl mb-4 text-charcoal mt-8">Who We Are</h2>
             <p>
-              This website and its services are owned and operated by <strong>Bousmah Capital Investment LLC</strong>, a Florida limited liability company.
+              This website and its services are owned and operated by Bousmah Capital Investment LLC, a Florida limited liability company.
             </p>
             <p>
               We provide marketing, education, and support services that connect consumers with licensed independent insurance agents and approved carriers. We are <strong>not</strong> an insurance company and do not provide legal, tax, or financial advice. Product availability, rates, underwriting, and policy terms are determined solely by the insurance carriers.
@@ -76,7 +76,7 @@ export default function TermsOfUse() {
 
             <h2 className="font-serif text-2xl mb-4 text-charcoal mt-8">Contact</h2>
             <p>
-              <strong>Bousmah Capital Investment LLC</strong><br />
+              Bousmah Capital Investment LLC<br />
               555 NE 15th St TS-A, Miami, FL 33132<br />
               Phone: 305-310-5340<br />
               Email:{" "}

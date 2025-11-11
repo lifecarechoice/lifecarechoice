@@ -436,7 +436,7 @@
       }
 
       .error {
-        margin-top: 12px;
+        margin-top: 6px;
         color: #c53d3d;
         font-size: 14px;
       }
@@ -459,17 +459,17 @@
       .footer-note {
         display: inline-flex;
         align-items: center;
-        justify-content: center;
-        column-gap: 8px;
+        gap: 6px;
         text-align: center;
-        margin-top: 12px;
+        margin-top: 8px;
         font-size: 13px;
-        color: rgba(45, 42, 38, 0.55);
+        color: rgba(45, 42, 38, 0.6);
       }
 
       .footer-note .footer-lock {
         font-size: 14px;
         line-height: 1;
+        display: inline-block;
       }
 
       .hidden {
@@ -883,15 +883,20 @@
             <label class="consent">
               <input type="checkbox" id="consentCall" name="consentCall" required />
               <span>
-                I agree Life Care Choice and its licensed professionals may call me about final expense coverage at the number provided. Calls may be made using automated technology. Message and data rates may apply. Consent is not required to make a purchase.
+                I consent to receive marketing text messages from Life Care Choice at the phone number provided. Frequency may vary. Message &amp; data rates may apply. Text HELP for assistance, reply STOP to opt out.
               </span>
             </label>
             <label class="consent">
               <input type="checkbox" id="consentText" name="consentText" required />
               <span>
-                I agree Life Care Choice may send text messages about my quote. Frequency varies. Reply STOP to opt out or HELP for help. Message and data rates may apply.
+                I consent to receive non-marketing text messages from Life Care Choice about my order updates, appointment reminders, etc. Message &amp; data rates may apply.
               </span>
             </label>
+            <p class="text-center text-xs text-gray-600 mt-3">
+              <a href="/terms-of-use" class="text-gold hover:underline">Terms of Service</a>
+              <span class="mx-1">&amp;</span>
+              <a href="/privacy-policy" class="text-gold hover:underline">Privacy Policy</a>
+            </p>
           </div>
           <div class="error" data-error="consent">Please check both boxes so we can send your personalized quote.</div>
         </section>

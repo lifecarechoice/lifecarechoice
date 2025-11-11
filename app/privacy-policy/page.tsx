@@ -13,7 +13,7 @@ export default function PrivacyPolicy() {
           <div className="prose prose-lg max-w-none">
             <h2 className="font-serif text-2xl mb-4 text-charcoal">Overview</h2>
             <p>
-              This website and its services are owned and operated by <strong>Bousmah Capital Investment LLC</strong>, a Florida limited liability company ("we," "our," "us").
+              This website and its services are owned and operated by Bousmah Capital Investment LLC, a Florida limited liability company ("we," "our," "us").
             </p>
             <p>
               We value your privacy and are committed to protecting your personal information. This policy explains how we collect, use, and safeguard your information.
@@ -95,7 +95,7 @@ export default function PrivacyPolicy() {
 
             <h2 className="font-serif text-2xl mb-4 text-charcoal mt-8">Contact</h2>
             <p>
-              <strong>Bousmah Capital Investment LLC</strong><br />
+              Bousmah Capital Investment LLC<br />
               555 NE 15th St TS-A, Miami, FL 33132<br />
               Phone: 305-310-5340<br />
               Email:{" "}
