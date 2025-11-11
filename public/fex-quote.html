@@ -46,12 +46,12 @@
         display: flex;
         flex-direction: column;
         padding: 0;
-        padding-top: 96px;
+        padding-top: clamp(120px, 22vw, 200px);
       }
 
       @media (max-width: 1023px) {
         body {
-          padding-top: 96px;
+          padding-top: clamp(120px, 22vw, 200px);
         }
 
         .site-header.scrolled {
@@ -155,6 +155,16 @@
       .options-grid {
         display: grid;
         gap: 16px;
+      }
+
+      .step {
+        padding-bottom: 200px;
+      }
+
+      @media (min-width: 520px) {
+        .step {
+          padding-bottom: 160px;
+        }
       }
 
       .options-grid--two {
@@ -262,20 +272,23 @@
 
       .actions {
         margin-top: auto;
-        display: flex;
-        justify-content: space-between;
-        gap: 16px;
         position: sticky;
         bottom: 0;
-        padding: 20px clamp(12px, 3vw, 24px) 0;
+        padding: 20px clamp(12px, 3vw, 24px) calc(env(safe-area-inset-bottom) + 12px);
         background: linear-gradient(
           to bottom,
           rgba(255, 255, 255, 0) 0%,
           rgba(255, 255, 255, 0.92) 45%,
           var(--white) 100%
         );
-        flex-wrap: wrap;
-        flex-direction: column-reverse;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .action-buttons {
+        display: grid;
+        gap: 12px;
       }
 
       .btn {
@@ -291,18 +304,12 @@
         justify-content: center;
         gap: 8px;
         width: 100%;
-        flex: 1 1 100%;
       }
 
       @media (min-width: 520px) {
-        .actions {
-          flex-wrap: nowrap;
-          flex-direction: row;
-        }
-
-        .btn {
-          width: auto;
-          flex: 1;
+        .action-buttons {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 16px;
         }
       }
 
@@ -430,10 +437,19 @@
       }
 
       .footer-note {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        column-gap: 8px;
         text-align: center;
         margin-top: 12px;
         font-size: 13px;
-        color: rgba(45, 42, 38, 0.5);
+        color: rgba(45, 42, 38, 0.55);
+      }
+
+      .footer-note .footer-lock {
+        font-size: 14px;
+        line-height: 1;
       }
 
       .hidden {
@@ -657,7 +673,7 @@
       }
     </style>
   </head>
-  <body>
+  <body class="lcc-quiz-page">
     <!-- Header -->
     <header class="site-header">
       <div class="header-content">
@@ -861,19 +877,21 @@
         </section>
 
         <div class="actions">
-          <button type="button" class="btn btn-secondary" id="back-btn" disabled>
-            ← Back
-          </button>
-          <button type="button" class="btn btn-primary" id="next-btn">
-            Next →
-          </button>
+          <div class="action-buttons">
+            <button type="button" class="btn btn-primary" id="next-btn">
+              Next →
+            </button>
+            <button type="button" class="btn btn-secondary" id="back-btn" disabled>
+              ← Back
+            </button>
+          </div>
+          <p class="footer-note">
+            <span class="footer-lock" aria-hidden="true">&#x1F512;</span>
+            <span>Your information is encrypted and secure. We never sell your data.</span>
+          </p>
         </div>
 
         <div class="success-banner" id="success-banner"></div>
-
-        <p class="footer-note">
-          Your information is encrypted and secure. We never sell your data.
-        </p>
       </form>
     </div>
     </div>
@@ -1137,7 +1155,6 @@
           currentStepIndex = index;
           updateUI();
           focusFirstInteractive(nextKey);
-          card?.scrollIntoView({ behavior: "smooth", block: "start" });
         }
 
         function updateUI() {
