@@ -24,7 +24,7 @@
         --sand: #f4eee5;
         --taupe: #d7c8b6;
         --white: #ffffff;
-        --actions-h: 130px;
+        --actions-h: 115px;
       }
 
       html {
@@ -51,12 +51,12 @@
         display: flex;
         flex-direction: column;
         padding: 0;
-        padding-top: clamp(112px, 20vw, 172px);
+        padding-top: clamp(100px, 18vw, 156px);
       }
 
       @media (max-width: 1023px) {
         body {
-          padding-top: clamp(112px, 20vw, 172px);
+          padding-top: clamp(100px, 18vw, 156px);
         }
 
         .site-header.scrolled {
@@ -69,19 +69,19 @@
         display: flex;
         align-items: center;
         justify-content: flex-start;
-        padding: clamp(20px, 4vw, 28px) 14px calc(var(--actions-h) + clamp(16px, 5vw, 28px) + env(safe-area-inset-bottom));
+        padding: clamp(18px, 4vw, 24px) 14px calc(var(--actions-h) + clamp(12px, 4vw, 20px) + env(safe-area-inset-bottom));
       }
 
       .card {
         width: min(960px, 100%);
         background: var(--white);
         border-radius: 32px;
-        padding: clamp(20px, 4vw, 36px);
+        padding: clamp(16px, 4vw, 28px);
         box-shadow: 0 24px 60px rgba(45, 42, 38, 0.1);
         position: relative;
         display: flex;
         flex-direction: column;
-        gap: 16px;
+        gap: 12px;
         overflow: hidden;
       }
 
@@ -140,7 +140,7 @@
 
       .step-header {
         text-align: center;
-        margin-bottom: 18px;
+        margin-bottom: 14px;
       }
 
       .step-title {
@@ -150,7 +150,7 @@
       }
 
       .step-subtext {
-        margin-top: 8px;
+        margin-top: 6px;
         font-size: 15px;
         color: rgba(45, 42, 38, 0.65);
         max-width: 560px;
@@ -160,19 +160,19 @@
 
       .options-grid {
         display: grid;
-        gap: 14px;
+        gap: 12px;
       }
 
       .step {
         display: flex;
         flex-direction: column;
-        gap: 10px;
-        padding-bottom: calc(var(--actions-h) + 10px);
+        gap: 8px;
+        padding-bottom: calc(var(--actions-h) + 6px);
       }
 
       @media (min-width: 520px) {
         .step {
-          padding-bottom: calc(var(--actions-h) + 8px);
+          padding-bottom: calc(var(--actions-h) + 6px);
         }
       }
 
@@ -181,13 +181,13 @@
       }
 
       #coverage-options {
-        gap: 10px;
+        gap: 8px;
         grid-template-columns: repeat(2, minmax(140px, 1fr));
         justify-content: center;
       }
 
       #coverage-options .option-button {
-        padding: 16px;
+        padding: 14px;
       }
 
       @media (max-width: 360px) {
@@ -213,7 +213,7 @@
 
         #coverage-options {
           grid-template-columns: repeat(3, minmax(0, 1fr));
-          gap: 10px;
+          gap: 8px;
         }
       }
 
@@ -228,7 +228,7 @@
         position: relative;
         border: 2px solid rgba(45, 42, 38, 0.1);
         border-radius: 18px;
-        padding: 20px;
+        padding: 18px;
         text-align: center;
         background: var(--white);
         cursor: pointer;
@@ -264,7 +264,7 @@
         width: 100%;
         max-width: 100%;
         box-sizing: border-box;
-        padding: 16px 18px;
+        padding: 14px 16px;
         border-radius: 16px;
         border: 2px solid rgba(45, 42, 38, 0.1);
         background: rgba(244, 238, 229, 0.45);
@@ -290,9 +290,9 @@
       .actions {
         margin-top: auto;
         position: sticky;
-        bottom: calc(env(safe-area-inset-bottom) + 14px);
-        padding: clamp(14px, 4vw, 20px) clamp(14px, 5vw, 22px);
-        padding-bottom: clamp(8px, 3vw, 14px);
+        bottom: calc(env(safe-area-inset-bottom) + 10px);
+        padding: clamp(12px, 4vw, 18px) clamp(12px, 5vw, 20px);
+        padding-bottom: clamp(6px, 2.5vw, 12px);
         background: linear-gradient(
           to bottom,
           rgba(255, 255, 255, 0) 0%,
@@ -301,19 +301,19 @@
         );
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap: 8px;
         z-index: 2;
       }
 
       .action-buttons {
         display: grid;
-        gap: 10px;
+        gap: 8px;
       }
 
       .btn {
         border: none;
         border-radius: 999px;
-        padding: 16px 28px;
+        padding: 14px 24px;
         font-weight: 600;
         font-size: 16px;
         cursor: pointer;
@@ -328,7 +328,7 @@
       @media (min-width: 520px) {
         .action-buttons {
           grid-template-columns: repeat(2, minmax(0, 1fr));
-          gap: 16px;
+          gap: 12px;
         }
       }
 
@@ -359,7 +359,7 @@
       .consent {
         display: flex;
         align-items: flex-start;
-        gap: 10px;
+        gap: 8px;
         font-size: 13px;
         color: rgba(45, 42, 38, 0.65);
         line-height: 1.5;
@@ -386,8 +386,8 @@
       .consent-group {
         display: flex;
         flex-direction: column;
-        gap: 10px;
-        margin-top: 8px;
+        gap: 8px;
+        margin-top: 6px;
       }
 
       .error[data-error="consent"] {
@@ -443,7 +443,7 @@
       .success-banner {
         display: none;
         margin-top: 24px;
-        padding: 20px;
+        padding: 18px;
         border-radius: 18px;
         background: rgba(199, 157, 89, 0.12);
         border: 2px solid rgba(199, 157, 89, 0.35);
@@ -613,7 +613,7 @@
         display: none;
         background: var(--white);
         border-top: 1px solid var(--taupe);
-        padding: 16px;
+        padding: 14px;
       }
 
       .mobile-menu.open {
