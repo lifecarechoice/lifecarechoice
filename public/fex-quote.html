@@ -94,17 +94,20 @@
       }
 
       .brand-name {
-        font-weight: 700;
-        letter-spacing: 0.12em;
+        font-weight: 800;
+        letter-spacing: 0.18em;
         text-transform: uppercase;
-        font-size: 16px;
-        color: rgba(45, 42, 38, 0.85);
+        font-size: clamp(14px, 4.2vw, 18px);
+        color: var(--gold);
+        text-shadow: 0 1px 6px rgba(199, 157, 89, 0.25);
       }
 
       .brand-motto {
-        font-size: 14px;
-        color: rgba(45, 42, 38, 0.65);
-        letter-spacing: 0.02em;
+        font-weight: 500;
+        text-transform: uppercase;
+        font-size: clamp(12px, 3.6vw, 15px);
+        color: rgba(45, 42, 38, 0.7);
+        letter-spacing: 0.08em;
       }
 
       .card h1 {
@@ -892,11 +895,6 @@
                 I consent to receive non-marketing text messages from Life Care Choice about my order updates, appointment reminders, etc. Message &amp; data rates may apply.
               </span>
             </label>
-            <p class="text-center text-xs text-gray-600 mt-3">
-              <a href="/terms-of-use" class="text-gold hover:underline">Terms of Service</a>
-              <span class="mx-1">&amp;</span>
-              <a href="/privacy-policy" class="text-gold hover:underline">Privacy Policy</a>
-            </p>
           </div>
           <div class="error" data-error="consent">Please check both boxes so we can send your personalized quote.</div>
         </section>
