@@ -1,0 +1,1526 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Life Care Choice – Final Expense Coverage</title>
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --charcoal: #2d2a26;
+        --gold: #c79d59;
+        --sand: #f4eee5;
+        --taupe: #d7c8b6;
+        --white: #ffffff;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        background: var(--sand);
+        color: var(--charcoal);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        padding-top: 96px;
+      }
+
+      @media (max-width: 1023px) {
+        body {
+          padding-top: 96px;
+        }
+
+        .site-header.scrolled {
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+      }
+
+      .main-content {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 32px 16px;
+      }
+
+      .card {
+        width: min(960px, 100%);
+        background: var(--white);
+        border-radius: 32px;
+        padding: clamp(24px, 4vw, 48px);
+        box-shadow: 0 24px 60px rgba(45, 42, 38, 0.1);
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .brand-header {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        align-items: center;
+      }
+
+      .brand-name {
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        font-size: 16px;
+        color: rgba(45, 42, 38, 0.85);
+      }
+
+      .brand-motto {
+        font-size: 14px;
+        color: rgba(45, 42, 38, 0.65);
+        letter-spacing: 0.02em;
+      }
+
+      .card h1 {
+        font-family: "DM Serif Display", serif;
+        font-size: clamp(32px, 5vw, 48px);
+        margin: 0;
+        text-align: center;
+      }
+
+      .card p.lead {
+        margin: 16px auto 32px;
+        max-width: 640px;
+        text-align: center;
+        color: rgba(45, 42, 38, 0.7);
+        font-size: clamp(16px, 3.6vw, 20px);
+      }
+
+      .progress {
+        width: 100%;
+        height: 10px;
+        background: rgba(199, 157, 89, 0.2);
+        border-radius: 999px;
+        overflow: hidden;
+        margin: 24px 0 40px;
+      }
+
+      .progress-bar {
+        height: 100%;
+        width: 0%;
+        background: linear-gradient(90deg, var(--gold), rgba(199, 157, 89, 0.75));
+        transition: width 200ms ease-in-out;
+      }
+
+      .step-header {
+        text-align: center;
+        margin-bottom: 32px;
+      }
+
+      .step-title {
+        font-family: "DM Serif Display", serif;
+        font-size: clamp(24px, 4vw, 32px);
+        margin: 0;
+      }
+
+      .step-subtext {
+        margin-top: 12px;
+        font-size: 15px;
+        color: rgba(45, 42, 38, 0.65);
+        max-width: 560px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .options-grid {
+        display: grid;
+        gap: 16px;
+      }
+
+      .options-grid--two {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+      }
+
+      #coverage-options {
+        gap: 10px;
+        grid-template-columns: repeat(2, minmax(140px, 1fr));
+        justify-content: center;
+      }
+
+      #coverage-options .option-button {
+        padding: 16px;
+      }
+
+      @media (max-width: 360px) {
+        #coverage-options {
+          grid-template-columns: repeat(2, minmax(120px, 1fr));
+          gap: 8px;
+        }
+
+        #coverage-options .option-button {
+          padding: 14px;
+          font-size: 15px;
+        }
+      }
+
+      @media (min-width: 640px) {
+        .options-grid--three {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .options-grid--two {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        #coverage-options {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 14px;
+        }
+      }
+
+      #fex-form {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        flex: 1;
+      }
+
+      .option-button {
+        position: relative;
+        border: 2px solid rgba(45, 42, 38, 0.1);
+        border-radius: 18px;
+        padding: 20px;
+        text-align: center;
+        background: var(--white);
+        cursor: pointer;
+        transition: border-color 150ms ease, box-shadow 150ms ease, transform 150ms ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .option-button span.label {
+        display: block;
+        font-weight: 600;
+        font-size: 18px;
+      }
+
+      .option-button:hover {
+        border-color: rgba(199, 157, 89, 0.6);
+        box-shadow: 0 12px 24px rgba(199, 157, 89, 0.18);
+        transform: translateY(-1px);
+      }
+
+      .option-button:focus-visible,
+      .option-button.active {
+        border-color: var(--gold);
+        box-shadow: 0 16px 32px rgba(199, 157, 89, 0.25);
+        background: rgba(199, 157, 89, 0.08);
+        outline: none;
+      }
+
+      .input-field,
+      .select-field {
+        width: 100%;
+        padding: 16px 18px;
+        border-radius: 16px;
+        border: 2px solid rgba(45, 42, 38, 0.1);
+        background: rgba(244, 238, 229, 0.45);
+        font-size: 16px;
+        transition: border-color 150ms ease, box-shadow 150ms ease;
+      }
+
+      .input-field:focus,
+      .select-field:focus,
+      .input-field:focus-visible,
+      .select-field:focus-visible {
+        outline: none;
+        border-color: var(--gold);
+        box-shadow: 0 0 0 3px rgba(199, 157, 89, 0.25);
+      }
+
+      .actions {
+        margin-top: auto;
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        position: sticky;
+        bottom: 0;
+        padding: 20px clamp(12px, 3vw, 24px) 0;
+        background: linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0) 0%,
+          rgba(255, 255, 255, 0.92) 45%,
+          var(--white) 100%
+        );
+        flex-wrap: wrap;
+        flex-direction: column-reverse;
+      }
+
+      .btn {
+        border: none;
+        border-radius: 999px;
+        padding: 16px 28px;
+        font-weight: 600;
+        font-size: 16px;
+        cursor: pointer;
+        transition: transform 150ms ease, box-shadow 150ms ease, opacity 150ms ease;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        width: 100%;
+        flex: 1 1 100%;
+      }
+
+      @media (min-width: 520px) {
+        .actions {
+          flex-wrap: nowrap;
+          flex-direction: row;
+        }
+
+        .btn {
+          width: auto;
+          flex: 1;
+        }
+      }
+
+      .btn:disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+      }
+
+      .btn-secondary {
+        background: rgba(45, 42, 38, 0.08);
+        color: rgba(45, 42, 38, 0.7);
+      }
+
+      .btn-secondary:hover:not(:disabled) {
+        transform: translateX(-2px);
+      }
+
+      .btn-primary {
+        background: var(--gold);
+        color: var(--white);
+        box-shadow: 0 16px 32px rgba(199, 157, 89, 0.25);
+      }
+
+      .btn-primary:hover:not(:disabled) {
+        transform: translateX(2px);
+      }
+
+      .consent {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        font-size: 13px;
+        color: rgba(45, 42, 38, 0.65);
+        line-height: 1.5;
+        transition: all 150ms ease;
+        border-radius: 8px;
+        padding: 8px;
+      }
+
+      .consent input {
+        margin-top: 4px;
+        width: 20px;
+        height: 20px;
+        accent-color: var(--gold);
+        transition: all 150ms ease;
+        flex-shrink: 0;
+      }
+
+      .consent.has-error {
+        border: 2px solid #c53d3d;
+        background: rgba(197, 61, 61, 0.05);
+        padding: 10px;
+      }
+
+      .consent-group {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        margin-top: 8px;
+      }
+
+      .error[data-error="consent"] {
+        margin-top: 6px;
+      }
+
+      .thank-you-message {
+        margin-top: 40px;
+        animation: fade-in 300ms ease forwards;
+        display: flex;
+        justify-content: center;
+      }
+
+      .thank-you-box {
+        text-align: center;
+        background: rgba(199, 157, 89, 0.08);
+        border: 2px solid rgba(199, 157, 89, 0.35);
+        border-radius: 24px;
+        padding: clamp(24px, 5vw, 36px);
+        max-width: 520px;
+        margin: 0 auto;
+      }
+
+      .thank-you-box h3 {
+        font-family: "DM Serif Display", serif;
+        font-size: clamp(24px, 4vw, 32px);
+        margin: 0 0 12px;
+      }
+
+      .thank-you-box p {
+        margin: 0;
+        font-size: 16px;
+        color: rgba(45, 42, 38, 0.7);
+      }
+
+      @keyframes fade-in {
+        from {
+          opacity: 0;
+          transform: translateY(12px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .error {
+        margin-top: 12px;
+        color: #c53d3d;
+        font-size: 14px;
+      }
+
+      .success-banner {
+        display: none;
+        margin-top: 24px;
+        padding: 20px;
+        border-radius: 18px;
+        background: rgba(199, 157, 89, 0.12);
+        border: 2px solid rgba(199, 157, 89, 0.35);
+        text-align: center;
+        font-weight: 600;
+      }
+
+      .success-banner.visible {
+        display: block;
+      }
+
+      .footer-note {
+        text-align: center;
+        margin-top: 12px;
+        font-size: 13px;
+        color: rgba(45, 42, 38, 0.5);
+      }
+
+      .hidden {
+        display: none !important;
+      }
+
+      /* Header Styles */
+      .site-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 50;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(199, 157, 89, 0.2);
+        transition: all 0.3s ease;
+      }
+
+      .header-content {
+        max-width: 1600px;
+        margin: 0 auto;
+        padding: 0 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 96px;
+      }
+
+      .header-logo {
+        display: flex;
+        align-items: center;
+      }
+
+      .header-logo img {
+        height: 56px;
+        width: auto;
+        transition: transform 0.3s ease;
+      }
+
+      .header-logo:hover img {
+        transform: scale(1.05);
+      }
+
+      .header-nav {
+        display: none;
+      }
+
+      @media (min-width: 1024px) {
+        .header-nav {
+          display: flex;
+          align-items: center;
+          gap: 4px;
+          flex: 1;
+          justify-content: center;
+        }
+
+        .header-nav a {
+          white-space: nowrap;
+          padding: 8px 12px;
+          font-size: 14px;
+          font-weight: 600;
+          color: var(--charcoal);
+          text-decoration: none;
+          transition: color 0.3s ease;
+          position: relative;
+        }
+
+        .header-nav a:hover {
+          color: var(--gold);
+        }
+
+        .header-nav a::after {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 0;
+          height: 2px;
+          background: var(--gold);
+          transition: width 0.3s ease;
+        }
+
+        .header-nav a:hover::after {
+          width: 100%;
+        }
+      }
+
+      .header-cta {
+        display: none;
+      }
+
+      @media (min-width: 1024px) {
+        .header-cta {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+
+        .header-cta a {
+          white-space: nowrap;
+          padding: 6px 16px;
+          border-radius: 999px;
+          font-size: 14px;
+          font-weight: 600;
+          text-decoration: none;
+          transition: all 0.3s ease;
+        }
+
+        .header-cta .btn-secondary {
+          background: rgba(45, 42, 38, 0.08);
+          color: rgba(45, 42, 38, 0.7);
+        }
+
+        .header-cta .btn-primary {
+          background: var(--gold);
+          color: var(--white);
+          box-shadow: 0 4px 12px rgba(199, 157, 89, 0.25);
+        }
+
+        .header-cta a:hover {
+          transform: translateY(-1px);
+        }
+      }
+
+      .mobile-menu-btn {
+        display: block;
+        padding: 8px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: var(--charcoal);
+      }
+
+      @media (min-width: 1024px) {
+        .mobile-menu-btn {
+          display: none;
+        }
+      }
+
+      .mobile-menu {
+        display: none;
+        background: var(--white);
+        border-top: 1px solid var(--taupe);
+        padding: 16px;
+      }
+
+      .mobile-menu.open {
+        display: block;
+      }
+
+      .mobile-menu a {
+        display: block;
+        padding: 12px 16px;
+        color: var(--charcoal);
+        text-decoration: none;
+        border-radius: 8px;
+        transition: background 0.2s ease;
+      }
+
+      .mobile-menu a:hover {
+        background: var(--sand);
+      }
+
+      /* Footer Styles */
+      .site-footer {
+        background: var(--charcoal);
+        color: var(--sand);
+        padding: 48px 16px;
+        margin-top: auto;
+      }
+
+      .footer-content {
+        max-width: 1280px;
+        margin: 0 auto;
+      }
+
+      .footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 24px;
+        margin-bottom: 32px;
+        font-size: 14px;
+      }
+
+      .footer-links a {
+        color: var(--sand);
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .footer-links a:hover {
+        color: var(--gold);
+      }
+
+      .footer-links span {
+        color: var(--taupe);
+      }
+
+      .footer-disclosure {
+        max-width: 800px;
+        margin: 0 auto 24px;
+        text-align: center;
+        font-size: 14px;
+        line-height: 1.6;
+        opacity: 0.9;
+      }
+
+      .footer-tagline {
+        text-align: center;
+        font-size: 12px;
+        color: rgba(244, 238, 229, 0.8);
+        margin-bottom: 16px;
+      }
+
+      .footer-copyright {
+        text-align: center;
+        font-size: 14px;
+        opacity: 0.75;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="site-header">
+      <div class="header-content">
+        <div class="header-logo">
+          <a href="/">
+            <img src="/LOGO WEBSITE BROWN - TRANSPARENT BACKGROUND.png" alt="Life Care Choice" />
+          </a>
+        </div>
+        <nav class="header-nav">
+          <a href="/">Home</a>
+          <a href="/products">Products</a>
+          <a href="/about">About Us</a>
+          <a href="/resources">Resources</a>
+          <a href="/team">Team</a>
+          <a href="/carriers">Carriers</a>
+          <a href="/contact">Contact Us</a>
+        </nav>
+        <div class="header-cta">
+          <a href="/agents" class="btn-secondary">Agents</a>
+          <a href="/get-a-quote" class="btn-primary">Get a Quote</a>
+        </div>
+        <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+      <div class="mobile-menu" id="mobile-menu">
+        <a href="/">Home</a>
+        <a href="/products">Products</a>
+        <a href="/about">About Us</a>
+        <a href="/resources">Resources</a>
+        <a href="/team">Team</a>
+        <a href="/carriers">Carriers</a>
+        <a href="/contact">Contact Us</a>
+        <a href="/agents">Agents</a>
+        <a href="/get-a-quote" style="background: var(--gold); color: var(--charcoal); font-weight: 600;">Get a Quote</a>
+      </div>
+    </header>
+
+    <div class="main-content">
+    <div class="card" id="fex-card">
+      <div class="brand-header">
+        <span class="brand-name">Life Care Choice</span>
+        <span class="brand-motto">We serve every client like family</span>
+      </div>
+
+      <div class="progress" aria-hidden="true">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+
+      <div class="step-header">
+        <h2 class="step-title" id="step-title">How much coverage would give you peace of mind?</h2>
+        <p class="step-subtext" id="step-subtext">
+          Choose the amount that would keep your family protected from final costs.
+        </p>
+      </div>
+
+      <form id="fex-form" novalidate>
+        <section class="step" data-step="coverage">
+          <div class="options-grid options-grid--two" id="coverage-options">
+            <!-- coverage buttons injected via JS -->
+          </div>
+          <div class="error" data-error="coverage"></div>
+        </section>
+
+        <section class="step hidden" data-step="state">
+          <select class="select-field" id="state" name="state" required>
+            <option value="">Select your state...</option>
+          </select>
+          <div class="error" data-error="state"></div>
+        </section>
+
+        <section class="step hidden" data-step="gender">
+          <div class="options-grid options-grid--two" id="gender-options">
+            <button type="button" class="option-button" data-value="male">
+              <span class="label">Male</span>
+            </button>
+            <button type="button" class="option-button" data-value="female">
+              <span class="label">Female</span>
+            </button>
+          </div>
+          <div class="error" data-error="gender"></div>
+        </section>
+
+        <section class="step hidden" data-step="birthDate">
+          <input
+            type="date"
+            class="input-field"
+            id="birthDate"
+            name="birthDate"
+            max=""
+            required
+          />
+          <div class="error" data-error="birthDate"></div>
+        </section>
+
+        <section class="step hidden" data-step="beneficiaryRelationship">
+          <div class="options-grid options-grid--three" id="beneficiary-relationship-options">
+            <!-- buttons injected via JS -->
+          </div>
+          <div class="error" data-error="beneficiaryRelationship"></div>
+        </section>
+
+        <section class="step hidden" data-step="hasLifeInsurance">
+          <div class="options-grid options-grid--two" id="life-insurance-options">
+            <button type="button" class="option-button" data-value="yes">
+              <span class="label">Yes</span>
+            </button>
+            <button type="button" class="option-button" data-value="no">
+              <span class="label">No</span>
+            </button>
+          </div>
+          <div class="error" data-error="hasLifeInsurance"></div>
+        </section>
+
+        <section class="step hidden" data-step="hasBankAccount">
+          <div class="options-grid options-grid--two" id="bank-account-options">
+            <button type="button" class="option-button" data-value="yes">
+              <span class="label">Yes</span>
+            </button>
+            <button type="button" class="option-button" data-value="no">
+              <span class="label">No</span>
+            </button>
+          </div>
+          <div class="error" data-error="hasBankAccount"></div>
+        </section>
+
+        <section class="step hidden" data-step="healthHistory">
+          <div class="options-grid options-grid--two" id="health-history-options">
+            <button type="button" class="option-button" data-value="yes">
+              <span class="label">Yes</span>
+            </button>
+            <button type="button" class="option-button" data-value="no">
+              <span class="label">No</span>
+            </button>
+          </div>
+          <div class="error" data-error="healthHistory"></div>
+        </section>
+
+        <section class="step hidden" data-step="beneficiaryName">
+          <input
+            type="text"
+            class="input-field"
+            id="beneficiaryName"
+            name="beneficiaryName"
+            placeholder="Beneficiary full name"
+            required
+          />
+          <div class="error" data-error="beneficiaryName"></div>
+        </section>
+
+        <section class="step hidden" data-step="name">
+          <div class="options-grid options-grid--two">
+            <input
+              type="text"
+              class="input-field"
+              id="firstName"
+              name="firstName"
+              placeholder="First name"
+              required
+            />
+            <input
+              type="text"
+              class="input-field"
+              id="lastName"
+              name="lastName"
+              placeholder="Last name"
+              required
+            />
+          </div>
+          <div class="error" data-error="firstName"></div>
+          <div class="error" data-error="lastName"></div>
+        </section>
+
+        <section class="step hidden" data-step="contact">
+          <input
+            type="tel"
+            class="input-field"
+            id="phone"
+            name="phone"
+            placeholder="(555) 123-4567"
+            required
+          />
+          <div class="error" data-error="phone"></div>
+          <div class="consent-group">
+            <label class="consent">
+              <input type="checkbox" id="consentCall" name="consentCall" required />
+              <span>
+                I agree Life Care Choice and its licensed professionals may call me about final expense coverage at the number provided. Calls may be made using automated technology. Message and data rates may apply. Consent is not required to make a purchase.
+              </span>
+            </label>
+            <label class="consent">
+              <input type="checkbox" id="consentText" name="consentText" required />
+              <span>
+                I agree Life Care Choice may send text messages about my quote. Frequency varies. Reply STOP to opt out or HELP for help. Message and data rates may apply.
+              </span>
+            </label>
+          </div>
+          <div class="error" data-error="consent">Please check both boxes so we can send your personalized quote.</div>
+        </section>
+
+        <div class="actions">
+          <button type="button" class="btn btn-secondary" id="back-btn" disabled>
+            ← Back
+          </button>
+          <button type="button" class="btn btn-primary" id="next-btn">
+            Next →
+          </button>
+        </div>
+
+        <div class="success-banner" id="success-banner"></div>
+
+        <p class="footer-note">
+          Your information is encrypted and secure. We never sell your data.
+        </p>
+      </form>
+    </div>
+    </div>
+    <!-- End main-content -->
+
+    <script>
+      (function () {
+        const coverageOptions = ["$5,000", "$10,000", "$15,000", "$20,000", "$25,000", "$30,000+"];
+        const beneficiaryRelationships = [
+          { value: "spouse", label: "Spouse" },
+          { value: "children", label: "My Children" },
+          { value: "other", label: "Other" },
+        ];
+        const states = [
+          "Alabama",
+          "Alaska",
+          "Arizona",
+          "Arkansas",
+          "California",
+          "Colorado",
+          "Connecticut",
+          "Delaware",
+          "Florida",
+          "Georgia",
+          "Hawaii",
+          "Idaho",
+          "Illinois",
+          "Indiana",
+          "Iowa",
+          "Kansas",
+          "Kentucky",
+          "Louisiana",
+          "Maine",
+          "Maryland",
+          "Massachusetts",
+          "Michigan",
+          "Minnesota",
+          "Mississippi",
+          "Missouri",
+          "Montana",
+          "Nebraska",
+          "Nevada",
+          "New Hampshire",
+          "New Jersey",
+          "New Mexico",
+          "New York",
+          "North Carolina",
+          "North Dakota",
+          "Ohio",
+          "Oklahoma",
+          "Oregon",
+          "Pennsylvania",
+          "Rhode Island",
+          "South Carolina",
+          "South Dakota",
+          "Tennessee",
+          "Texas",
+          "Utah",
+          "Vermont",
+          "Virginia",
+          "Washington",
+          "West Virginia",
+          "Wisconsin",
+          "Wyoming",
+        ];
+
+        const formState = {
+          coverage: "",
+          state: "",
+          gender: "",
+          birthDate: "",
+          beneficiaryRelationship: "",
+          hasLifeInsurance: "",
+          hasBankAccount: "",
+          healthHistory: "",
+          beneficiaryName: "",
+          firstName: "",
+          lastName: "",
+          phone: "",
+          consentCall: false,
+          consentText: false,
+        };
+
+        const steps = [
+          "coverage",
+          "state",
+          "gender",
+          "birthDate",
+          "beneficiaryRelationship",
+          "hasLifeInsurance",
+          "hasBankAccount",
+          "healthHistory",
+          "beneficiaryName",
+          "name",
+          "contact",
+        ];
+
+        const stepCopy = {
+          coverage: {
+            title: "How much coverage would give you peace of mind?",
+            subtext: "Choose the amount that would keep your family protected from final costs.",
+          },
+          state: {
+            title: "What state do you live in?",
+            subtext: "We’ll show you the plans available in your area.",
+          },
+          gender: {
+            title: "What is your gender?",
+            subtext: "This helps match you with the right coverage options.",
+          },
+          birthDate: {
+            title: "When were you born?",
+            subtext: "Your age helps us find plans made for you.",
+          },
+          beneficiaryRelationship: {
+            title: "Who will be the beneficiary?",
+            subtext: "Select who you want to receive the benefit.",
+          },
+          hasLifeInsurance: {
+            title: "Do you currently have life insurance?",
+            subtext:
+              "Even if you do, many families add final expense coverage for extra peace of mind and rising funeral costs.",
+          },
+          hasBankAccount: {
+            title: "Do you have a bank account?",
+            subtext: "Just helps us confirm eligibility for available plans.",
+          },
+          healthHistory: {
+            title: "Any history of cancer, heart attack, diabetes, or stroke?",
+            subtext: "Honesty helps us find your best plan. Most applicants still get approved.",
+          },
+          beneficiaryName: {
+            title: "What’s your beneficiary’s name?",
+            subtext: "Add the person you’d like this plan to protect.",
+          },
+          name: {
+            title: "What’s your name?",
+            subtext: "So our licensed professional can personalize your quote.",
+          },
+          contact: {
+            title: "What’s the best phone number to receive your personalized quote?",
+            subtext: "Share your contact number to get matched with the right coverage.",
+          },
+        };
+
+        const progressBar = document.getElementById("progress-bar");
+        const stepTitle = document.getElementById("step-title");
+        const stepSubtext = document.getElementById("step-subtext");
+        const stepHeader = document.querySelector(".step-header");
+        const backBtn = document.getElementById("back-btn");
+        const nextBtn = document.getElementById("next-btn");
+        const successBanner = document.getElementById("success-banner");
+        const stepsElements = Array.from(document.querySelectorAll(".step"));
+        const card = document.getElementById("fex-card");
+
+        let currentStepIndex = 0;
+
+        function populateCoverageOptions() {
+          const container = document.getElementById("coverage-options");
+          container.innerHTML = "";
+          coverageOptions.forEach((label) => {
+            const button = document.createElement("button");
+            button.type = "button";
+            button.className = "option-button";
+            button.dataset.value = label;
+            button.innerHTML = `<span class="label">${label}</span>`;
+            button.addEventListener("click", () => {
+              formState.coverage = label;
+              highlightSelection(container, label);
+              clearError("coverage");
+              updateNextButtonState();
+              setTimeout(() => goToStep(currentStepIndex + 1), 150);
+            });
+            container.appendChild(button);
+          });
+        }
+
+        function populateStates() {
+          const select = document.getElementById("state");
+          states.forEach((state) => {
+            const option = document.createElement("option");
+            option.value = state;
+            option.textContent = state;
+            select.appendChild(option);
+          });
+          select.addEventListener("change", (event) => {
+            formState.state = event.target.value;
+            clearError("state");
+            updateNextButtonState();
+          });
+        }
+
+        function populateBeneficiaryRelationships() {
+          const container = document.getElementById("beneficiary-relationship-options");
+          container.innerHTML = "";
+          beneficiaryRelationships.forEach(({ value, label }) => {
+            const button = document.createElement("button");
+            button.type = "button";
+            button.className = "option-button";
+            button.dataset.value = value;
+            button.innerHTML = `<span class="label">${label}</span>`;
+            button.addEventListener("click", () => {
+              formState.beneficiaryRelationship = value;
+              highlightSelection(container, value);
+              clearError("beneficiaryRelationship");
+              updateNextButtonState();
+            });
+            container.appendChild(button);
+          });
+        }
+
+        function attachOptionListeners(containerId, stateKey) {
+          const container = document.getElementById(containerId);
+          Array.from(container.querySelectorAll(".option-button")).forEach((button) => {
+            button.addEventListener("click", () => {
+              formState[stateKey] = button.dataset.value || "";
+              highlightSelection(container, button.dataset.value || "");
+              clearError(stateKey);
+              updateNextButtonState();
+            });
+          });
+        }
+
+        function highlightSelection(container, value) {
+          Array.from(container.querySelectorAll(".option-button")).forEach((button) => {
+            button.classList.toggle("active", button.dataset.value === value);
+          });
+        }
+
+        function clearError(key) {
+          const errorEl = document.querySelector(`[data-error="${key}"]`);
+          if (errorEl) errorEl.textContent = "";
+          if (key === "consent") {
+            const callCheckbox = document.getElementById("consentCall");
+            const textCheckbox = document.getElementById("consentText");
+            const callLabel = callCheckbox?.closest(".consent");
+            const textLabel = textCheckbox?.closest(".consent");
+            if (callLabel) callLabel.classList.remove("has-error");
+            if (textLabel) textLabel.classList.remove("has-error");
+          }
+        }
+
+        function showError(key, message) {
+          const errorEl = document.querySelector(`[data-error="${key}"]`);
+          if (!errorEl) return;
+          if (key === "consent") {
+            errorEl.textContent = "Please check both boxes so we can send your personalized quote.";
+            return;
+          }
+          errorEl.textContent = message;
+        }
+
+        function goToStep(index) {
+          if (index < 0 || index >= steps.length) return;
+          stepsElements.forEach((section) => section.classList.add("hidden"));
+          const nextKey = steps[index];
+          const nextSection = document.querySelector(`[data-step="${nextKey}"]`);
+          if (nextSection) {
+            nextSection.classList.remove("hidden");
+          }
+          currentStepIndex = index;
+          updateUI();
+          focusFirstInteractive(nextKey);
+          card?.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+
+        function updateUI() {
+          const total = steps.length;
+          const currentKey = steps[currentStepIndex];
+          const copy = stepCopy[currentKey];
+          const percent = Math.round((currentStepIndex / (total - 1)) * 100);
+          progressBar.style.width = `${percent}%`;
+          stepTitle.textContent = copy.title;
+          if (stepSubtext) {
+            stepSubtext.textContent = copy.subtext;
+          }
+          backBtn.disabled = currentStepIndex === 0;
+          updateNextButtonState();
+        }
+
+        function focusFirstInteractive(key) {
+          const section = document.querySelector(`[data-step="${key}"]`);
+          if (!section) return;
+          const focusable = section.querySelector(
+            "button.option-button, select, input[type='date'], input[type='text'], input[type='email'], input[type='tel'], input[type='checkbox']"
+          );
+          if (focusable && typeof focusable.focus === "function") {
+            setTimeout(() => focusable.focus(), 120);
+          }
+        }
+
+        function updateNextButtonState() {
+          const currentKey = steps[currentStepIndex];
+          const completed = isStepValid(currentKey);
+          nextBtn.textContent = currentStepIndex === steps.length - 1 ? "Submit →" : "Next →";
+
+          if (currentKey === "contact") {
+            const phoneDigits = formState.phone.replace(/\D/g, "");
+            nextBtn.disabled = phoneDigits.length !== 10;
+          } else {
+            nextBtn.disabled = !completed;
+          }
+        }
+
+        function isStepValid(key) {
+          switch (key) {
+            case "coverage":
+              return Boolean(formState.coverage);
+            case "state":
+              return Boolean(formState.state);
+            case "gender":
+              return Boolean(formState.gender);
+            case "birthDate":
+              return Boolean(formState.birthDate);
+            case "beneficiaryRelationship":
+              return Boolean(formState.beneficiaryRelationship);
+            case "hasLifeInsurance":
+              return Boolean(formState.hasLifeInsurance);
+            case "hasBankAccount":
+              return Boolean(formState.hasBankAccount);
+            case "healthHistory":
+              return Boolean(formState.healthHistory);
+            case "beneficiaryName":
+              return Boolean(formState.beneficiaryName.trim());
+            case "name":
+              return Boolean(formState.firstName.trim() && formState.lastName.trim());
+            case "contact": {
+              const phoneDigits = formState.phone.replace(/\D/g, "");
+              const callCheckbox = document.getElementById("consentCall");
+              const textCheckbox = document.getElementById("consentText");
+              const callChecked = callCheckbox instanceof HTMLInputElement ? callCheckbox.checked : formState.consentCall;
+              const textChecked = textCheckbox instanceof HTMLInputElement ? textCheckbox.checked : formState.consentText;
+              return phoneDigits.length === 10 && callChecked && textChecked;
+            }
+            default:
+              return true;
+          }
+        }
+
+        function validateCurrentStep() {
+          const key = steps[currentStepIndex];
+          let valid = true;
+
+          switch (key) {
+            case "coverage":
+              if (!formState.coverage) {
+                showError("coverage", "Select an amount.");
+                valid = false;
+              }
+              break;
+            case "state":
+              if (!formState.state) {
+                showError("state", "Select your state.");
+                valid = false;
+              }
+              break;
+            case "gender":
+              if (!formState.gender) {
+                showError("gender", "Choose an option.");
+                valid = false;
+              }
+              break;
+            case "birthDate":
+              if (!formState.birthDate) {
+                showError("birthDate", "Enter your birth date.");
+                valid = false;
+              }
+              break;
+            case "beneficiaryRelationship":
+              if (!formState.beneficiaryRelationship) {
+                showError("beneficiaryRelationship", "Select an option.");
+                valid = false;
+              }
+              break;
+            case "hasLifeInsurance":
+              if (!formState.hasLifeInsurance) {
+                showError("hasLifeInsurance", "Select an option.");
+                valid = false;
+              }
+              break;
+            case "hasBankAccount":
+              if (!formState.hasBankAccount) {
+                showError("hasBankAccount", "Select an option.");
+                valid = false;
+              }
+              break;
+            case "healthHistory":
+              if (!formState.healthHistory) {
+                showError("healthHistory", "Select an option.");
+                valid = false;
+              }
+              break;
+            case "beneficiaryName":
+              if (!formState.beneficiaryName.trim()) {
+                showError("beneficiaryName", "Enter a beneficiary name.");
+                valid = false;
+              }
+              break;
+            case "name":
+              if (!formState.firstName.trim()) {
+                showError("firstName", "Enter your first name.");
+                valid = false;
+              }
+              if (!formState.lastName.trim()) {
+                showError("lastName", "Enter your last name.");
+                valid = false;
+              }
+              break;
+            case "contact": {
+              const phoneDigits = formState.phone.replace(/\D/g, "");
+              if (phoneDigits.length !== 10) {
+                showError("phone", "Enter a 10-digit phone number.");
+                valid = false;
+              }
+              const callCheckbox = document.getElementById("consentCall");
+              const textCheckbox = document.getElementById("consentText");
+              const callLabel = callCheckbox?.closest(".consent");
+              const textLabel = textCheckbox?.closest(".consent");
+              const callChecked = callCheckbox instanceof HTMLInputElement ? callCheckbox.checked : formState.consentCall;
+              const textChecked = textCheckbox instanceof HTMLInputElement ? textCheckbox.checked : formState.consentText;
+              
+              if (!callChecked || !textChecked) {
+                showError("consent", "Please check both boxes so we can send your personalized quote.");
+                if (!callChecked && callLabel) {
+                  callLabel.classList.add("has-error");
+                }
+                if (!textChecked && textLabel) {
+                  textLabel.classList.add("has-error");
+                }
+                valid = false;
+              } else {
+                if (callLabel) callLabel.classList.remove("has-error");
+                if (textLabel) textLabel.classList.remove("has-error");
+              }
+              break;
+            }
+            default:
+              break;
+          }
+
+          return valid;
+        }
+
+        nextBtn.addEventListener("click", () => {
+          if (!validateCurrentStep()) return;
+          if (currentStepIndex === steps.length - 1) {
+            showThankYouMessage();
+            return;
+          }
+          goToStep(currentStepIndex + 1);
+        });
+
+        backBtn.addEventListener("click", () => {
+          goToStep(currentStepIndex - 1);
+        });
+
+        document.getElementById("birthDate").addEventListener("change", (event) => {
+          formState.birthDate = event.target.value;
+          clearError("birthDate");
+          updateNextButtonState();
+        });
+
+        document.getElementById("beneficiaryName")?.addEventListener("input", (event) => {
+          formState.beneficiaryName = event.target.value;
+          clearError("beneficiaryName");
+          updateNextButtonState();
+        });
+
+        document.getElementById("firstName")?.addEventListener("input", (event) => {
+          formState.firstName = event.target.value;
+          clearError("firstName");
+          updateNextButtonState();
+        });
+
+        document.getElementById("lastName")?.addEventListener("input", (event) => {
+          formState.lastName = event.target.value;
+          clearError("lastName");
+          updateNextButtonState();
+        });
+
+        document.getElementById("phone").addEventListener("input", (event) => {
+          const digits = event.target.value.replace(/\D/g, "").slice(0, 10);
+          let formatted = digits;
+          if (digits.length > 6) {
+            formatted = `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
+          } else if (digits.length > 3) {
+            formatted = `(${digits.slice(0, 3)}) ${digits.slice(3)}`;
+          }
+          event.target.value = formatted;
+          formState.phone = digits;
+          clearError("phone");
+          updateNextButtonState();
+        });
+
+        document.getElementById("consentCall").addEventListener("change", (event) => {
+          formState.consentCall = event.target.checked;
+          const callLabel = event.target.closest(".consent");
+          if (callLabel && event.target.checked) {
+            callLabel.classList.remove("has-error");
+          }
+          const textCheckbox = document.getElementById("consentText");
+          const textChecked = textCheckbox instanceof HTMLInputElement ? textCheckbox.checked : formState.consentText;
+          if (event.target.checked && textChecked) {
+            clearError("consent");
+          }
+          updateNextButtonState();
+        });
+
+        document.getElementById("consentText").addEventListener("change", (event) => {
+          formState.consentText = event.target.checked;
+          const textLabel = event.target.closest(".consent");
+          if (textLabel && event.target.checked) {
+            textLabel.classList.remove("has-error");
+          }
+          const callCheckbox = document.getElementById("consentCall");
+          const callChecked = callCheckbox instanceof HTMLInputElement ? callCheckbox.checked : formState.consentCall;
+          if (event.target.checked && callChecked) {
+            clearError("consent");
+          }
+          updateNextButtonState();
+        });
+
+        document.getElementById("fex-card").addEventListener("click", (event) => {
+          if (event.target.closest("button[type='button']")) {
+            event.target.blur();
+          }
+        });
+
+        document.getElementById("state").addEventListener("change", () => updateNextButtonState());
+        document.getElementById("birthDate").addEventListener("change", () => updateNextButtonState());
+
+        attachOptionListeners("gender-options", "gender");
+        attachOptionListeners("life-insurance-options", "hasLifeInsurance");
+        attachOptionListeners("bank-account-options", "hasBankAccount");
+        attachOptionListeners("health-history-options", "healthHistory");
+
+        document.getElementById("birthDate").setAttribute("max", new Date().toISOString().split("T")[0]);
+
+        function showThankYouMessage() {
+          const form = document.getElementById("fex-form");
+          if (!form || !successBanner) return;
+
+          if (stepHeader) {
+            stepHeader.classList.add("hidden");
+          }
+          if (stepTitle) {
+            stepTitle.textContent = "";
+          }
+          if (stepSubtext) {
+            stepSubtext.textContent = "";
+          }
+
+          const interactiveElements = form.querySelectorAll(
+            "section.step, .actions, .footer-note"
+          );
+          interactiveElements.forEach((el) => {
+            el.classList.add("hidden");
+          });
+
+          successBanner.innerHTML = `
+            <div class="thank-you-box">
+              <h3>Thank you! Your request has been received.</h3>
+              <p>A licensed professional from Life Care Choice will reach out soon.<br />We’re honored to help you protect the people you love.</p>
+            </div>
+          `;
+          successBanner.classList.add("visible");
+
+          setTimeout(() => {
+            window.location.href = "/";
+          }, 10000);
+        }
+
+        populateCoverageOptions();
+        populateStates();
+        populateBeneficiaryRelationships();
+        updateUI();
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+        const mobileMenu = document.getElementById("mobile-menu");
+        const menuIcon = document.getElementById("menu-icon");
+        if (mobileMenuBtn && mobileMenu) {
+          mobileMenuBtn.addEventListener("click", () => {
+            const isOpen = mobileMenu.classList.toggle("open");
+            if (menuIcon) {
+              if (isOpen) {
+                menuIcon.setAttribute("d", "M6 18L18 6M6 6l12 12");
+              } else {
+                menuIcon.setAttribute("d", "M4 6h16M4 12h16M4 18h16");
+              }
+            }
+          });
+
+          // Close mobile menu when clicking a link
+          mobileMenu.querySelectorAll("a").forEach((link) => {
+            link.addEventListener("click", () => {
+              mobileMenu.classList.remove("open");
+              if (menuIcon) {
+                menuIcon.setAttribute("d", "M4 6h16M4 12h16M4 18h16");
+              }
+            });
+          });
+        }
+      })();
+    </script>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="/privacy-policy">Privacy Policy</a>
+          <span>·</span>
+          <a href="/terms-of-use">Terms of Use</a>
+          <span>·</span>
+          <a href="/do-not-call">Do Not Call/Opt-Out</a>
+        </div>
+        <div class="footer-disclosure">
+          <p>Life Care Choice is a marketing and support organization. We are not an insurance company and do not provide legal, tax, or financial advice. Insurance is offered and sold by licensed independent agents. Availability, rates, and underwriting are set by the carriers.</p>
+        </div>
+        <div class="footer-tagline">
+          <p>Driven by care. Built on trust. Obsessed with serving every client like family.</p>
+        </div>
+        <div class="footer-copyright">
+          <p>&copy; <span id="current-year">2025</span> Life Care Choice. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Set current year
+      document.getElementById("current-year").textContent = new Date().getFullYear();
+
+      // Header scroll effect
+      (function() {
+        const header = document.querySelector(".site-header");
+        if (header) {
+          const handleScroll = () => {
+            if (window.scrollY > 20) {
+              header.classList.add("scrolled");
+            } else {
+              header.classList.remove("scrolled");
+            }
+          };
+          window.addEventListener("scroll", handleScroll);
+          handleScroll(); // Check initial state
+        }
+      })();
+    </script>
+  </body>
+</html>
