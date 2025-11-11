@@ -24,6 +24,7 @@
         --sand: #f4eee5;
         --taupe: #d7c8b6;
         --white: #ffffff;
+        --actions-h: 200px;
       }
 
       html {
@@ -34,6 +35,10 @@
       *::before,
       *::after {
         box-sizing: border-box;
+      }
+
+      html, body {
+        overflow-x: hidden;
       }
 
       body {
@@ -77,6 +82,7 @@
         display: flex;
         flex-direction: column;
         gap: 20px;
+        overflow: hidden;
       }
 
       .brand-header {
@@ -161,12 +167,12 @@
         display: flex;
         flex-direction: column;
         gap: 16px;
-        margin-bottom: 140px;
+        padding-bottom: calc(var(--actions-h) + 24px);
       }
 
       @media (min-width: 520px) {
         .step {
-          margin-bottom: 120px;
+          padding-bottom: calc(var(--actions-h) + 16px);
         }
       }
 
@@ -266,6 +272,12 @@
         transition: border-color 150ms ease, box-shadow 150ms ease;
       }
 
+      input[type="date"] {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
+      }
+
       .input-field:focus,
       .select-field:focus,
       .input-field:focus-visible,
@@ -290,6 +302,7 @@
         display: flex;
         flex-direction: column;
         gap: 14px;
+        z-index: 2;
       }
 
       .action-buttons {
@@ -330,7 +343,7 @@
       }
 
       .btn-secondary:hover:not(:disabled) {
-        transform: translateX(-2px);
+        transform: none;
       }
 
       .btn-primary {
@@ -340,7 +353,7 @@
       }
 
       .btn-primary:hover:not(:disabled) {
-        transform: translateX(2px);
+        transform: none;
       }
 
       .consent {
@@ -1161,6 +1174,7 @@
           currentStepIndex = index;
           updateUI();
           focusFirstInteractive(nextKey);
+          document.dispatchEvent(new Event('lcc-step-change'));
         }
 
         function updateUI() {
@@ -1500,6 +1514,35 @@
             });
           });
         }
+      })();
+    </script>
+    <script>
+      (function () {
+        function setActionsHeight() {
+          const el = document.querySelector('.actions');
+          if (!el) return;
+          const h = el.offsetHeight;
+          document.documentElement.style.setProperty('--actions-h', h + 'px');
+        }
+
+        window.addEventListener('load', setActionsHeight);
+        window.addEventListener('resize', setActionsHeight);
+        if (window.visualViewport) {
+          window.visualViewport.addEventListener('resize', setActionsHeight);
+        }
+
+        const nextBtn = document.getElementById('next-btn');
+        const backBtn = document.getElementById('back-btn');
+        [nextBtn, backBtn].forEach((btn) =>
+          btn &&
+          btn.addEventListener('click', () => {
+            setTimeout(setActionsHeight, 0);
+          })
+        );
+
+        document.addEventListener('lcc-step-change', () => {
+          setTimeout(setActionsHeight, 0);
+        });
       })();
     </script>
 
